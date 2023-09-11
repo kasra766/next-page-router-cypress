@@ -5,8 +5,11 @@ import {
   UseControllerProps,
 } from "react-hook-form";
 
+interface idProps {
+  data_testid?: string;
+}
 export function FormField<T extends FieldValues>(
-  props: TextFieldProps & UseControllerProps<T>,
+  props: TextFieldProps & UseControllerProps<T> & idProps,
 ) {
   const {
     control,
@@ -14,6 +17,7 @@ export function FormField<T extends FieldValues>(
     rules,
     defaultValue,
     shouldUnregister,
+    data_testid,
     ...textFieldProps
   } = props;
   const {
@@ -27,6 +31,7 @@ export function FormField<T extends FieldValues>(
       inputRef={ref}
       value={value}
       name={name}
+      data-test-id={data_testid}
       {...textFieldProps}
       {...(error && { error: true, helperText: error.message })}
     />

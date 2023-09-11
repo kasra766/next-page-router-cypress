@@ -31,6 +31,7 @@ export function LoginFields() {
           autoFocus
           label="User Name"
           fullWidth
+          data_testid="userName"
         />
         <FormField
           control={control}
@@ -45,6 +46,7 @@ export function LoginFields() {
           type="password"
           label="Password"
           fullWidth
+          data_testid="password"
         />
         <Button variant="contained" type="submit">
           submit
@@ -52,7 +54,7 @@ export function LoginFields() {
         <Button
           variant="text"
           component={Link}
-          href="/sign-up"
+          href="/"
           data-testid="submit-btn"
         >
           sign up

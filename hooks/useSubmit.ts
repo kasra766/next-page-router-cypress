@@ -1,8 +1,10 @@
 import { useSnackbar } from "notistack";
 import { useState } from "react";
 import { type UserSignup, useAuth } from "../store/useAuth";
+import { useRouter } from "next/router";
 
 export function useSubmit() {
+  const router = useRouter();
   const [successMsg, setSuccessMsg] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
   const { user_information: defaultValues, login, signup } = useAuth();
@@ -24,16 +26,16 @@ export function useSubmit() {
           }, 500);
         });
         enqueueSnackbar("submit data success", { variant: "success" });
-        console.log("success");
 
         await promise;
         signup(data);
         login();
+        router.back();
       } else {
-        throw new Error("something is wrong: " + res.status);
+        throw new Error("status code: " + res.status);
       }
     } catch (err: any) {
-      console.log("submit form err: " + err.message);
+      enqueueSnackbar("user is ban", { variant: "error" });
     }
   };
 
