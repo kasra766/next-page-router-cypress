@@ -30,7 +30,7 @@ export function useSubmit() {
         await promise;
         signup(data);
         login();
-        router.back();
+        router.replace("/profile");
       } else {
         throw new Error("status code: " + res.status);
       }

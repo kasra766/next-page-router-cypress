@@ -1,6 +1,6 @@
+import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useAuth } from "../store/useAuth";
-import { useEffect } from "react";
 
 export function useIsLogin() {
   const router = useRouter();
@@ -13,7 +13,7 @@ export function useIsLogin() {
       if (!isLogin) {
         router.push("/login");
       } else {
-        if (router.pathname === "login") {
+        if (router.pathname === "login" || router.pathname === "sign-up") {
           router.replace("/profile");
         }
       }

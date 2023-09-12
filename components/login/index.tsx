@@ -54,7 +54,7 @@ export function LoginFields() {
         <Button
           variant="text"
           component={Link}
-          href="/"
+          href="/sign-up"
           data-testid="submit-btn"
         >
           sign up
