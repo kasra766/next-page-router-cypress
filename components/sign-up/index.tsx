@@ -1,14 +1,19 @@
 import { useForm } from "react-hook-form";
 import { Button, Paper, Stack, Typography } from "@mui/material";
+import { DevTool } from "@hookform/devtools";
+
 import { FormField } from "../text-filed";
-import { type UserSignup } from "../../store/useAuth";
 import { emailPattern, mobilePattern, strongRegex } from "../../lib/patterns";
 import { useSubmit } from "../../hooks/useSubmit";
-import { DevTool } from "@hookform/devtools";
+import { type UserSignup } from "../../store/useAuth";
 
 export function SignUpFields() {
   const { defaultValues, submit } = useSubmit();
-  const { control, handleSubmit } = useForm<UserSignup>({ defaultValues });
+  const {
+    control,
+    handleSubmit,
+    formState: { isDirty, isValid },
+  } = useForm<UserSignup>({ defaultValues, mode: "onChange" });
 
   return (
     <div className="flex min-w-full justify-center pt-3">
@@ -18,7 +23,7 @@ export function SignUpFields() {
         elevation={12}
         className="flex min-w-[500px] max-w-[600px] flex-col  gap-3 p-8"
       >
-        <Typography variant="h4" mb={2}>
+        <Typography variant="h4" mb={2} data-testid="title">
           Sign Up
         </Typography>
         <Stack direction={"row"} columnGap={2}>
@@ -100,7 +105,13 @@ export function SignUpFields() {
           label="Password"
         />
 
-        <Button fullWidth type="submit" variant="contained" role="button">
+        <Button
+          fullWidth
+          type="submit"
+          variant="contained"
+          role="button"
+          disabled={!isDirty || !isValid}
+        >
           Submit
         </Button>
       </Paper>
