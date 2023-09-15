@@ -7,8 +7,13 @@ import { useSubmit } from "../../hooks/useSubmit";
 
 export function LoginFields() {
   const { submit } = useSubmit();
-  const { control, handleSubmit } = useForm({
+  const {
+    control,
+    handleSubmit,
+    formState: { isDirty, isValid },
+  } = useForm({
     defaultValues: { user_name: "", password: "" },
+    mode: "onChange",
   });
 
   return (
@@ -48,7 +53,11 @@ export function LoginFields() {
           fullWidth
           data_testid="password"
         />
-        <Button variant="contained" type="submit">
+        <Button
+          variant="contained"
+          type="submit"
+          disabled={!isDirty || !isValid}
+        >
           submit
         </Button>
         <Button

@@ -24,4 +24,25 @@ describe("login page", () => {
 
     cy.spy(console, "log").calledWith("submit form err, status code: 401");
   });
+
+  it("check for disabling btn", () => {
+    cy.visit("/login");
+
+    cy.get('button[type="submit"]').should("be.disabled");
+
+    cy.get('input[name="user_name"]').type("kasra");
+    cy.get('input[name="password"]').type("kasra");
+
+    cy.get('button[type="submit"]').should("be.disabled");
+    cy.get('input[name="password"]').type("kasra123");
+
+    cy.get('button[type="submit"]').should("not.be.disabled");
+  });
+
+  it("check sign up btn", () => {
+    cy.visit("/login");
+
+    cy.get('a[href*="/sign-up"]').click();
+    cy.url().should("include", "sign-up");
+  });
 });
