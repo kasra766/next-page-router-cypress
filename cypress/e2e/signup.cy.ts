@@ -63,3 +63,4 @@ describe("testing sign up page", () => {
     cy.url().should("not.include", "profile");
   });
 });
+export {};

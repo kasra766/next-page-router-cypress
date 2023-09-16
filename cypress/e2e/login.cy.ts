@@ -46,3 +46,4 @@ describe("login page", () => {
     cy.url().should("include", "sign-up");
   });
 });
+export {};

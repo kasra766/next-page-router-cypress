@@ -1,11 +1,9 @@
-import { useSnackbar } from "notistack";
-import { useState } from "react";
-import { type UserSignup, useAuth } from "../store/useAuth";
 import { useRouter } from "next/router";
+import { useSnackbar } from "notistack";
+import { type UserSignup, useAuth } from "../store/useAuth";
 
 export function useSubmit() {
   const router = useRouter();
-  const [successMsg, setSuccessMsg] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
   const { user_information: defaultValues, login, signup } = useAuth();
 

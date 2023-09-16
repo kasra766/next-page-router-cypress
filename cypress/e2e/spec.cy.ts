@@ -16,3 +16,4 @@ describe("My First Test", () => {
     cy.get(".action-focus").focus().should("have.class", "focus");
   });
 });
+export {};
